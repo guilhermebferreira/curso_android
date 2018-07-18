@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private FragmentTransaction transaction = null;
     private FragmentoPerfil fragmentoPerfil = null;
     private FragmentoCardapio fragmentoCardapio = null;
+    private FragmentoMapa fragmentoMapa = null;
    // private FragmentoB fragmentoB = null;
 
     @Override
@@ -65,6 +66,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
             case R.id.about:
                 Log.i("INFO", "click on ABOUT");
+
+                fragmentoMapa = new FragmentoMapa();
+                transaction = manager.beginTransaction();
+                transaction.replace(R.id.TelaPrincipalFrame,fragmentoMapa);
+                //cria um empilhamento de telas, com os fragmentos
+                //para o app ter para onde retornar, caso o usuário pressione o botão de voltar
+                transaction.addToBackStack("TelaPrincipal");
+                transaction.commit();
                 break;
         }
 
