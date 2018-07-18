@@ -50,7 +50,7 @@ public class perfil_usuario extends AppCompatActivity implements DialogInterface
 
         //pega as configurações salvas pelo usuario
         boolean userChoice = PersistenceManager.getPersistenceManager().getStored(this);
-        Switch userChoiceSwitch = findViewById(R.id.perfil_usuario_switch_notificacoes);
+        Switch userChoiceSwitch = findViewById(R.id.fragmento_perfil_usuario_switch_notificacoes);
         userChoiceSwitch.setChecked(userChoice);
 
 
@@ -118,7 +118,7 @@ public class perfil_usuario extends AppCompatActivity implements DialogInterface
     public void onClick(DialogInterface dialog, int codButton) {
         if (codButton == DialogInterface.BUTTON_POSITIVE) {
 
-            Switch choice = findViewById(R.id.perfil_usuario_switch_notificacoes);
+            Switch choice = findViewById(R.id.fragmento_perfil_usuario_switch_notificacoes);
             Bundle data = new Bundle();
             data.putBoolean("notification", choice.isChecked());
 
