@@ -25,7 +25,7 @@ public class FragmentoCardapio extends Fragment {
         //1 - cria e preenche o dataset
         createDataset();
         //2 - busca a referencia para o recycleview
-        recycle = view.findViewById(R.id.lista_recycle);
+        recycle = view.findViewById(R.id.fragmento_cardapio_lista_recycle);
         recycle.setLayoutManager(new LinearLayoutManager(getContext()));
         recycle.setItemAnimator(new DefaultItemAnimator());
         //3 - instancia um objeto adapter que recebe o dataset
