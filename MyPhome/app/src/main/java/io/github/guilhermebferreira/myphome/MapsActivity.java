@@ -1,7 +1,12 @@
 package io.github.guilhermebferreira.myphome;
 
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -9,9 +14,13 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+import java.io.IOException;
+import java.util.List;
+
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, LocationListener {
 
     private GoogleMap mMap;
 
@@ -47,9 +56,68 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(tce).title("TCE-TO"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(tce));
 
-        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
+        mMap.setOnMarkerClickListener(this);
 
         CameraUpdate zoom = CameraUpdateFactory.newLatLngZoom(tce, 15);
         mMap.moveCamera(zoom);
+
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener()
+        {
+            @Override
+            public void onMapClick(LatLng position)
+            {
+
+                mMap.addMarker(new MarkerOptions().position(position).title("Click location"));
+
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(position,8));
+                Log.i("INFO", "Click position defined");
+            }
+        });
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+
+        Log.i("INFO", "Pino clicado");
+        getLatLongByEndereco();
+
+        return true;
+    }
+
+    public void getLatLongByEndereco(){
+        Geocoder coder = new Geocoder(this);
+
+        try {
+            List<Address> results = coder.getFromLocationName("TCE Tocantins", 1);
+            double la = results.get(0).getLatitude();
+            double lo = results.get(0).getLongitude();
+
+            Log.i("INFO", "TCE em "+la+" "+lo);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } ;
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
     }
 }
