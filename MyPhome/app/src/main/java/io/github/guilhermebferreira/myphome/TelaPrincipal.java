@@ -43,7 +43,10 @@ public class TelaPrincipal extends AppCompatActivity implements DialogInterface.
                 Intent myIntent = new Intent(this, perfil_usuario.class);
                 //cria um dicionario para armazenar os parametros extras
                 Bundle data = new Bundle();
+
                 data.putString("username", username.getText().toString());
+
+
                 //passa parametros extras para a nova tela
                 //                myIntent.putExtra("data", data); //Optional parameters
                 myIntent.putExtras(data); //Optional parameters
@@ -65,9 +68,13 @@ public class TelaPrincipal extends AppCompatActivity implements DialogInterface.
     @Override
     public void onActivityResult(int cod, int res, Intent data){
         if(res == Activity.RESULT_OK){
-            Log.i("INFO", "teste");
+            Log.i("INFO", "cod: "+cod);
             if(cod == 1020){
                 Boolean userChoice = data.getExtras().getBoolean("notification");
+
+                Log.i("INFO", "userChoice: "+userChoice);
+
+                PersistenceManager.getPersistenceManager().save(this, userChoice);
             }
         }
 
