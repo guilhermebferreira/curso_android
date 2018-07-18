@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item
+        android:id="@+id/profile"
+        android:title="Perfil"
+        android:enabled="true"
+        android:icon="@mipmap/perfil"
+        app:showAsAction="ifRoom"  />
+    <item
+        android:id="@+id/cardapio"
+        android:title="Cardapio"
+        android:enabled="true"
+        android:icon="@mipmap/cardapio"
+        app:showAsAction="ifRoom"  />
+    <item
+        android:id="@+id/about"
+        android:title="Informações"
+        android:enabled="true"
+        android:icon="@mipmap/info"
+        app:showAsAction="ifRoom"  />
 </menu>
