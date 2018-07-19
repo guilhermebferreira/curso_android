@@ -1,0 +1,65 @@
+{
+	"company_name": "iPhome Food Park",
+	"address": "Av. Teotonio Segurado 102 Norte",
+	"latitude": "-10.177710",
+	"longitude": "-48.332699",
+	"itens" : [
+		{
+			"item_name": "Mussarela",
+			"classification": "1",
+			"image": "https://silvanomalfattiml.000webhostapp.com/images/mussarela.jpg"
+		},
+		{
+			"item_name": "Calabresa",
+			"classification": "2",
+			"image": "https://silvanomalfattiml.000webhostapp.com/images/calabresa.jpg"
+			
+		},
+		{
+			"item_name": "California",
+			"classification": "3",
+			"image": "https://silvanomalfattiml.000webhostapp.com/images/mussarela.jpg"
+			
+		},
+		{
+			"item_name": "Porguguesa",
+			"classification": "3",
+			"image": "https://silvanomalfattiml.000webhostapp.com/images/portuguesa.jpg"
+		},
+		{
+			"item_name": "Quatro Queijos",
+			"classification": "2",
+			"image": "https://silvanomalfattiml.000webhostapp.com/images/quatro_queijos.jpg"
+		},
+		{
+			"item_name": "Cervejas",
+			"classification": "3",
+			"image": "https://silvanomalfattiml.000webhostapp.com/images/cervejas.jpg"
+		},
+		{
+			"item_name": "Vinhos",
+			"classification": "3",
+			"image": "https://silvanomalfattiml.000webhostapp.com/images/vinhos.jpg"
+		},
+		{
+			"item_name": "Sucos",
+			"classification": "2",
+			"image": "https://silvanomalfattiml.000webhostapp.com/images/sucos.jpg"
+		},
+		{
+			"item_name": "Sorvete",
+			"classification": "3",
+			"image": "https://silvanomalfattiml.000webhostapp.com/images/sorvete.jpg"
+		},
+		{
+			"item_name": "Torta Doce",
+			"classification": "2",
+			"image": "https://silvanomalfattiml.000webhostapp.com/images/torta_doce.jpg"
+		},
+		{
+			"item_name": "Salada de Frutas",
+			"classification": "1",
+			"image": "https://silvanomalfattiml.000webhostapp.com/images/salada_de_frutas.jpg"
+		}	
+	]
+}
