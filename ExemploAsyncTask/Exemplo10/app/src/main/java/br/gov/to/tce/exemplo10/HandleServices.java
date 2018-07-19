@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -46,6 +48,13 @@ public class HandleServices extends AsyncTask<String, Void, ArrayList<Food>> {
             //armazena o conteúdo baixado pela requisição
             String json = response.body().string();
 
+            //transformando o json no objeto company
+
+            Gson gson = new Gson();
+            Company company = gson.fromJson(json, Company.class);
+
+            return (ArrayList)company.getItens();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -54,10 +63,12 @@ public class HandleServices extends AsyncTask<String, Void, ArrayList<Food>> {
 
 
     @Override
-    protected void onPostExecute( ArrayList<Food> result){
-        //Codigo
-
+    protected void onPostExecute( ArrayList<Food> list){
         Log.i("INFO", "Finalizado");
+        //já posso atualizar a interface
+        activity.updateRecycleView(list);
+
+        //encerrando o dialogo de interface que exibe a mensagem "CARREGANDO..."
         dialog.cancel();
     }
 

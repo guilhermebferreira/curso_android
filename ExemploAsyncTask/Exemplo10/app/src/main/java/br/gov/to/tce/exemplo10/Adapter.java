@@ -14,6 +14,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class Adapter extends RecyclerView.Adapter<FoodHolder>
@@ -50,15 +53,19 @@ public class Adapter extends RecyclerView.Adapter<FoodHolder>
     {
         Food food = foodList.get(position);
         holder.getName().setText(food.getFoodName());
-        holder.getStars().setRating( Integer.parseInt(food.getClassification()));
+        holder.getStars().setRating( Float.parseFloat(food.getClassification()));
+
+        //usando o picasso para baixar as imagens por meio de threads individuais
+        Picasso.with(context).load(food.getImage()).into(holder.getImage());
         //holder.getImage().setImageBitmap(food.getImage());
-        holder.itemView.setOnClickListener(new View.OnClickListener()
+
+        /*holder.itemView.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
                 onClickListener.onClickCell(holder.itemView, position);
             }
-        });
+        });*/
     }
 }

@@ -77,4 +77,9 @@ public class RecycleActivity extends AppCompatActivity
     {
        return BitmapFactory.decodeResource(getResources(), id);
     }
+
+    public void updateRecycleView(ArrayList<Food> list) {
+        Adapter adapter = new Adapter(this, list, null);
+        recycler.setAdapter(adapter);
+    }
 }
