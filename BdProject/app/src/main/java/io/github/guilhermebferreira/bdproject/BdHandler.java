@@ -2,10 +2,15 @@ package io.github.guilhermebferreira.bdproject;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
 import android.widget.Toast;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class BdHandler extends SQLiteOpenHelper {
 
@@ -41,6 +46,31 @@ public class BdHandler extends SQLiteOpenHelper {
         db.execSQL(scripts[1]);
     }
 
+    public ArrayList<Reg> getRegs(){
+        ArrayList<Reg> list = new ArrayList<Reg>();
+        SQLiteDatabase db =  getReadableDatabase();
+        Cursor cursor = db.query("reg", new String[]{"_id","name","imagepath","rating"},
+                null,
+                null,
+                null,
+                null,
+                null,
+                null);
+
+        if(cursor.getCount()>0){
+            while (cursor.moveToNext()){
+                list.add(new Reg(
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getFloat(3)
+                        ));
+            }
+        }
+
+        return list;
+    }
+
     public void insert(Reg reg){
         ContentValues values = new ContentValues();
 
@@ -51,5 +81,11 @@ public class BdHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.insert( "reg", null, values);
         Toast.makeText(context, "Inserção realizada", Toast.LENGTH_SHORT).show();
+    }
+
+    public void delete(int id) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete("reg", "_id=?", new String[]{String.valueOf(id)});
+        Toast.makeText(context, "Item deletado.", Toast.LENGTH_SHORT).show();
     }
 }

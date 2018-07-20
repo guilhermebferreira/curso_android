@@ -1,5 +1,9 @@
 package io.github.guilhermebferreira.bdproject;
 
+import android.content.Context;
+
+import java.io.File;
+
 public class Reg {
 
     private int _id;
@@ -49,5 +53,18 @@ public class Reg {
 
     public void setRating(float rating) {
         this.rating = rating;
+    }
+
+    public void delete(Context context) {
+        //deleta imagem
+
+        File file = new File(imagepath);
+        if (file.exists()) {
+            file.delete();
+        }
+
+        //deleta do banco
+        BdHandler db = new BdHandler(context, "reg", 1);
+        db.delete(_id);
     }
 }
